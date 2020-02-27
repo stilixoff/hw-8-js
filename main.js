@@ -41,6 +41,7 @@ console.log('recover - ' + student.recover());
 class BudgetStudent extends Student {
     constructor(university, course, fullName) {
         super(university, course, fullName);
+        setInterval(() => console.log('getScholarship - ' + this.getScholarship()), 30000);
     }
     getMarks() {
         return this.marks = [5, 4, 4, 5];

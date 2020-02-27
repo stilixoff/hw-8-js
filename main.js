@@ -1,8 +1,3 @@
-// let student = {
-//     university: 'УГХТУ',
-//     course: 'АПП',
-//     fullName: 'Стародубец Олег'
-// };
 
 class Student {
     constructor(university, course, fullName) {
@@ -10,45 +5,57 @@ class Student {
         this.course = course;
         this.fullName = fullName;
     }
-
     getInfo() {
-        return 'Студент 1го курса ' + this.university + ' ,' + this.fullName;
+        return 'Студент ' + this.course + 'го курса ' + this.university + ' ,' + this.fullName;
     }
-
     getMarks() {
         return this.marks = [5, 4, 4, 5];
     }
-
     setMarks(val) {
         this.marks.push(val);
         return this.marks;
     }
-
-    getAverageMark(...val) {
+    getAverageMark() {
         return (this.marks.reduce((a, b) => {
-            return a+b;
+            return a + b;
         }, 0)) / this.marks.length;
     }
-
     dismiss() {
         return this.marks = null;
     }
-
     recover() {
         return this.getMarks();
     }
 }
 
-let student = new Student('УГХТУ', 'АПП', 'Стародубец Олег');
+let student = new Student('УГХТУ', '1', 'Стародубец Олег');
 
 console.log(student);
-console.log(student.getInfo());
-console.log(student.getMarks());
-console.log(student.setMarks(5));
-console.log(student.getAverageMark());
-console.log(student.dismiss());
-console.log(student.recover());
+console.log('getInfo - ' + student.getInfo());
+console.log('getMarks - ' + student.getMarks());
+console.log('setMarks(5) - ' + student.setMarks(5));
+console.log('getAverageMark - ' + student.getAverageMark());
+console.log('dismiss - ' + student.dismiss());
+console.log('recover - ' + student.recover());
 
 class BudgetStudent extends Student {
-    
+    constructor(university, course, fullName) {
+        super(university, course, fullName);
+    }
+    getMarks() {
+        return this.marks = [5, 4, 4, 5];
+    }
+    getScholarship() {
+        this.getMarks();
+        if(this.marks === null || this.getAverageMark() < 4) {
+            return 'У Вас больше нет степендии'
+        } else {
+            return 'Вы получили 1400 грн. стипендии'
+        };
+    }
 }
+
+let newStudent = new BudgetStudent('УГХТУ', '1', 'Стародубец Олег');
+
+console.log(newStudent);
+console.log('getScholarship - ' + newStudent.getScholarship());
